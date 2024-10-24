@@ -109,7 +109,7 @@ def main(page:Page):
 
     def save_file(e:FilePickerResultEvent):
         if e.path:
-            download_path=f'{e.path}/student.xlsx'
+            download_path=f'{e.path}/Latha Mathavan student Details.xlsx'
             print(download_path)
             response=requests.get('https://bright-dawna-sivarajan-c060034e.koyeb.app/Download-Student')
             try:
@@ -122,6 +122,7 @@ def main(page:Page):
             sb.content.value='Please Select a Folder To Download'
         sb.open=True
         page.update()
+
     file_picker=FilePicker(on_result=save_file)
     page.overlay.append(file_picker)
 
