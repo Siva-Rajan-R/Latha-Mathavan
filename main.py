@@ -110,24 +110,14 @@ def main(page:Page):
     def save_file(e:FilePickerResultEvent):
         if e.path:
             download_path=f'{e.path}/student.xlsx'
-            import pandas as pd
-            data = {
-                "Register Number": [],
-                "Student Name": [],
-                "Student Attedence": [],
-                'Student Fee':[]
-            }
-
-            for i in data_tabel.current.rows:
-                temp=['Register Number','Student Name','Student Attedence','Student Fee']
-                for j in i.cells:
-                    print(j.content.value)
-                    data[temp[0]].append(j.content.value)
-                    temp.pop(0)
-            df = pd.DataFrame(data)
-            df.to_excel(download_path,index=False)
-
-            sb.content.value='successfully Downloaded !'
+            print(download_path)
+            response=requests.get('https://bright-dawna-sivarajan-c060034e.koyeb.app/Download-Student')
+            try:
+                with open(download_path,'wb') as f:
+                    f.write(response.content)
+                sb.content.value='successfully Downloaded !'
+            except:
+                sb.content.value='Failed To Download !'
         else:
             sb.content.value='Please Select a Folder To Download'
         sb.open=True

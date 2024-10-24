@@ -40,7 +40,7 @@
         '';
 
         # Open editors for the following files by default, if they exist:
-        default.openFiles = [ "README.md" "requirements.txt" "$MAIN_FILE" ];
+        default.openFiles = [ "requirements.txt" "$MAIN_FILE" ];
       };
 
       onStart = {
@@ -62,7 +62,7 @@
         '';
 
         # Open editors for the following files by default, if they exist:
-        default.openFiles = [ "README.md" "requirements.txt" "$MAIN_FILE" ];
+        default.openFiles = [ "requirements.txt" "$MAIN_FILE" ];
       };
     };
 
