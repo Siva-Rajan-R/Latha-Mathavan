@@ -309,7 +309,7 @@ def main(page:Page):
                 alignment=MainAxisAlignment.CENTER,
                 horizontal_alignment=CrossAxisAlignment.CENTER
             )
-            ad.title=ResponsiveRow([Image(src='Latha_Mathavan_Engineering_College/assets/png-transparent-cartoon-sadness-illustration-say-hello-words-phrases-boy-god-sai-baba-thumbnail.png',width=50,height=50,border_radius=50),Text(spans=[TextSpan(f'Hi,{response.json()['detail']['student_name']}'.title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
+            ad.title=ResponsiveRow([Image(src='Latha_Mathavan_Engineering_College/assets/png-transparent-cartoon-sadness-illustration-say-hello-words-phrases-boy-god-sai-baba-thumbnail.png',width=50,height=50,border_radius=50),Text(spans=[TextSpan(f"Hi,{response.json()['detail']['student_name']}".title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
             ad.alignment=Alignment(0,0)
             page.update()
             
