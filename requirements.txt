@@ -1,2 +1,3 @@
-flet
+flet==0.25.0.dev3519
 requests
+pandas

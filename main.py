@@ -32,7 +32,7 @@ def main(page:Page):
         def __init__(self):
             HomeHeader.__init__(self)
             self.content.content=Container(height=100,content=ResponsiveRow(controls=[IconButton(icon=icons.ARROW_BACK_IOS_NEW,col=1,icon_color='Black',on_click=views_remove),Text(col=11,spans=[TextSpan('Latha Mathavan Engineering College',TextStyle(25,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],vertical_alignment=CrossAxisAlignment.CENTER),blur=Blur(1,1),alignment=Alignment(0,0))
-            self.content.image_src='https://www.lathamathavan.edu.in/wp-content/uploads/2021/11/LMEC-LOGO-NO-BG-e1638298290184.png'
+            self.content.image_src='Latha_Mathavan_Engineering_College/assets/icon.png'
            
     class HomeButton(Container):
         def  __init__(self,content=None,key=None,click=None,data=None):
@@ -137,15 +137,28 @@ def main(page:Page):
 
     def add_update_delete(e):
         print(register_number.value,student_fees.value,student_attendence.value,student_name.value)
+        
         if e.control.key=='add':
-            response=requests.post('http://127.0.0.1:8000/Add-Student',json={'student_register_number':register_number.value,'student_name':student_name.value.title(),'student_attedence':f'{student_attendence.value} %','student_fee':f'{student_fees.value} Rs'})
-            print(response.json())
+            e.control.text='Adding...'
+            e.control.disable=True
+            e.control.update()
+            response=requests.post('https://bright-dawna-sivarajan-c060034e.koyeb.app/Add-Student',json={'student_register_number':register_number.value,'student_name':student_name.value.title(),'student_attedence':f'{student_attendence.value} %','student_fee':f'{student_fees.value} Rs'})
+            e.control.text='Add'
+            e.control.disable=False
         elif e.control.key=='update':
-            response=requests.put('http://127.0.0.1:8000/Update-Student',json={'student_register_number':register_number.value,'student_name':student_name.value.title(),'student_attedence':f'{student_attendence.value} %','student_fee':f'{student_fees.value} Rs'})
-            print(response.json())
+            e.control.text='Updating...'
+            e.control.disable=True
+            e.control.update()
+            response=requests.put('https://bright-dawna-sivarajan-c060034e.koyeb.app/Update-Student',json={'student_register_number':register_number.value,'student_name':student_name.value.title(),'student_attedence':f'{student_attendence.value} %','student_fee':f'{student_fees.value} Rs'})
+            e.control.text='Update'
+            e.control.disable=False
         elif e.control.key=='delete':
-            response=requests.delete('http://127.0.0.1:8000/Delete-Student',json={'student_register_number':register_number.value,'student_name':student_name.value.title(),'student_attedence':f'{student_attendence.value} %','student_fee':f'{student_fees.value} Rs'})
-            print(response.json())
+            e.control.text='Deleting...'
+            e.control.disable=True
+            e.control.update()
+            response=requests.delete('https://bright-dawna-sivarajan-c060034e.koyeb.app/Delete-Student',json={'student_register_number':register_number.value,'student_name':student_name.value.title(),'student_attedence':f'{student_attendence.value} %','student_fee':f'{student_fees.value} Rs'})
+            e.control.text='Delete'
+            e.control.disable=False
         data=response.json()
         if data['bool']:
             add_page_column.current.controls.insert(0,InformationContainer(msg=data['detail']))
@@ -222,7 +235,7 @@ def main(page:Page):
                 elif e.control.data=='downloadstudent':
                     page.views.append(show_student_data())
                     page.update()
-                    response=requests.get('http://127.0.0.1:8000/Get-Student')
+                    response=requests.get('https://bright-dawna-sivarajan-c060034e.koyeb.app/Get-Student')
                     for i in response.json()['detail']:
                         data_tabel.current.rows.append(
                             DataRow(
@@ -242,6 +255,7 @@ def main(page:Page):
                                 ]
                             )
                         )
+                        page.update()
                 
             else:
                 password.error_text='Incorrect Password'
@@ -260,7 +274,12 @@ def main(page:Page):
     def show_student_page_details(e):
         hf.heavy_impact()
         page.update(hf)
-        response=requests.get('http://127.0.0.1:8000/Get-Single-Student',json={'student_register_number':register_number.value,'student_name':None,'student_attedence':None,'student_fee':None})
+        e.control.text='Sumbiting...'
+        e.control.disable=True
+        e.control.update()
+        response=requests.get('https://bright-dawna-sivarajan-c060034e.koyeb.app/Get-Single-Student',json={'student_register_number':register_number.value,'student_name':None,'student_attedence':None,'student_fee':None})
+        e.control.text='Sumbit'
+        e.control.disable=False
         if isinstance(response.json()['detail'],dict):
             ad.content=Column(
                 width=300,
@@ -299,7 +318,7 @@ def main(page:Page):
                 alignment=MainAxisAlignment.CENTER,
                 horizontal_alignment=CrossAxisAlignment.CENTER
             )
-            ad.title=ResponsiveRow([Image(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcYgw7ViPUHvpy_rqt4dBrPxc4Z7yW_LYjA&s',width=50,height=50,border_radius=50),Text(spans=[TextSpan(f'Hi,{response.json()['detail']['student_name']}'.title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
+            ad.title=ResponsiveRow([Image(src='Latha_Mathavan_Engineering_College/assets/png-transparent-cartoon-sadness-illustration-say-hello-words-phrases-boy-god-sai-baba-thumbnail.png',width=50,height=50,border_radius=50),Text(spans=[TextSpan(f'Hi,{response.json()['detail']['student_name']}'.title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
             ad.alignment=Alignment(0,0)
             page.update()
             
@@ -309,6 +328,7 @@ def main(page:Page):
             sb.content.value=response.json()['detail']
             sb.open=True
             sb.update()
+        page.update()
 
     def home_page():
         return View(
@@ -345,7 +365,7 @@ def main(page:Page):
                     ),
                     expand=True,
                     #https://www.lathamathavan.edu.in/wp-content/uploads/2021/11/LMEC-LOGO-NO-BG-e1638298290184.png
-                    image_src='https://www.lathamathavan.edu.in/wp-content/uploads/2021/11/LMEC-LOGO-NO-BG-e1638298290184.png',
+                    image_src='Latha_Mathavan_Engineering_College/assets/icon.png',
                     width=page.width,
                     gradient=RadialGradient(['white','cyan']),
                     border_radius=20
