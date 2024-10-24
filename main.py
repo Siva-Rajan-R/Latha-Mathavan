@@ -32,7 +32,7 @@ def main(page:Page):
         def __init__(self):
             HomeHeader.__init__(self)
             self.content.content=Container(height=100,content=ResponsiveRow(controls=[IconButton(icon=icons.ARROW_BACK_IOS_NEW,col=1,icon_color='Black',on_click=views_remove),Text(col=11,spans=[TextSpan('Latha Mathavan Engineering College',TextStyle(25,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],vertical_alignment=CrossAxisAlignment.CENTER),blur=Blur(1,1),alignment=Alignment(0,0))
-            self.content.image_src='Latha_Mathavan_Engineering_College/assets/icon.png'
+            self.content.image_src='icon.png'
            
     class HomeButton(Container):
         def  __init__(self,content=None,key=None,click=None,data=None):
@@ -309,7 +309,7 @@ def main(page:Page):
                 alignment=MainAxisAlignment.CENTER,
                 horizontal_alignment=CrossAxisAlignment.CENTER
             )
-            ad.title=ResponsiveRow([Image(src='Latha_Mathavan_Engineering_College/assets/png-transparent-cartoon-sadness-illustration-say-hello-words-phrases-boy-god-sai-baba-thumbnail.png',width=50,height=50,border_radius=50),Text(spans=[TextSpan(f"Hi,{response.json()['detail']['student_name']}".title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
+            ad.title=ResponsiveRow([Image(src='png-transparent-cartoon-sadness-illustration-say-hello-words-phrases-boy-god-sai-baba-thumbnail.png',width=50,height=50,border_radius=50),Text(spans=[TextSpan(f"Hi,{response.json()['detail']['student_name']}".title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
             ad.alignment=Alignment(0,0)
             page.update()
             
@@ -356,7 +356,7 @@ def main(page:Page):
                     ),
                     expand=True,
                     #https://www.lathamathavan.edu.in/wp-content/uploads/2021/11/LMEC-LOGO-NO-BG-e1638298290184.png
-                    image_src='Latha_Mathavan_Engineering_College/assets/icon.png',
+                    image_src='icon.png',
                     width=page.width,
                     gradient=RadialGradient(['white','cyan']),
                     border_radius=20
