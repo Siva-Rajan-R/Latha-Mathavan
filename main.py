@@ -6,7 +6,7 @@ def main(page:Page):
     page.theme_mode=ThemeMode.LIGHT
     hf=HapticFeedback()
     sb=SnackBar(content=Text(weight=FontWeight.W_700,color='green',size=18))
-    ad=AlertDialog(content=Text())
+    ad=AlertDialog(content=Text(),bgcolor='white')
     bs=BottomSheet(content=Text())
     page.overlay.extend([hf,ad,sb,bs])
     textfield_column=Ref[Column]()
@@ -173,7 +173,7 @@ def main(page:Page):
             bs.open=True
             bs.content=Column(
                 width=400,
-                height=200,
+                height=230,
                 controls=[
                     password,
                     Row([Checkbox(ref=checkbox,label='Save Password Until Close The Session',label_style=TextStyle(weight=FontWeight.W_600,size=13,color='black'),check_color='white',active_color='green')],alignment=MainAxisAlignment.CENTER),
@@ -201,13 +201,13 @@ def main(page:Page):
                 with open(download_path,'wb') as f:
                     f.write(response.content)
                 ad.content=ResponsiveRow([Text('Successfully Downloaded !',weight=FontWeight.W_700,size=18,color='green',text_align='center'),Text(f'Latha Mathavan Student Details.xlsx\n In {e.path}',weight=FontWeight.W_700,size=18,color=colors.BLUE_ACCENT,text_align='center')])
-                ad.title=Image("1103-confetti.gif",width=50,height=50)
+                ad.title=Image("1103-confetti.gif",width=75,height=75,scale=1.2)
             except:
                 ad.content=ResponsiveRow([Text('Failed To Download !',weight=FontWeight.W_700,size=18,color='red',text_align='center'),Text('Try To Choose Different Folder',weight=FontWeight.W_700,size=18,color=colors.BLUE_ACCENT,text_align='center')])
-                ad.title=Image('comp_3.webp',width=75,height=75)
+                ad.title=Image('comp_3.webp',width=75,height=75,scale=1.2)
         else:
             ad.content=Text('Please Select a Folder To Download',weight=FontWeight.W_700,size=18,color='red',text_align='center')
-            ad.title=Image('120-folder.gif',width=50,height=50)
+            ad.title=Image('120-folder.gif',width=75,height=75)
         ad.open=True
         download_btn.current.content=Icon(icons.DOWNLOAD,color='white')
         page.update()
@@ -302,7 +302,7 @@ def main(page:Page):
     def show_student_page_details(e):
         hf.heavy_impact()
         page.update(hf)
-        ad.content=Text("Input Field Couldn't Be Empty",weight=FontWeight.W_700,size=18,color='red')
+        ad.content=Text("Input Field Couldn't Be Empty",weight=FontWeight.W_700,size=18,color='red',text_align='center')
         ad.title=Image('245-edit-document.gif',width=75,height=75)
         if register_number.value!="":
             e.control.text='Sumbiting...'
@@ -348,12 +348,12 @@ def main(page:Page):
                     alignment=MainAxisAlignment.CENTER,
                     horizontal_alignment=CrossAxisAlignment.CENTER
                 )
-                ad.title=ResponsiveRow([Image(src='giphy.webp',width=75,height=75,border_radius=50),Text(spans=[TextSpan(f"Hi,{response.json()['detail']['student_name']}".title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
+                ad.title=ResponsiveRow([Image(src='giphy.webp',width=75,height=75,border_radius=50,scale=1.2),Text(spans=[TextSpan(f"Hi,{response.json()['detail']['student_name']}".title(),TextStyle(22,weight=FontWeight.W_800,foreground=Paint(gradient=PaintLinearGradient((200,100),(10,130),colors=[colors.PINK,colors.BLUE_ACCENT]))))],text_align=TextAlign.CENTER)],alignment=MainAxisAlignment.CENTER)
                 ad.alignment=Alignment(0,0)
                 page.update()
             else:
                 ad.content=Text(response.json()['detail'],weight=FontWeight.W_700,color='red',size=18,text_align='center')
-                ad.title=Image('not_found.gif',width=75,height=75)
+                ad.title=Image('not_found.gif',width=75,height=75,scale=1.5)
     
         ad.open=True
         e.control.text='Sumbit'
