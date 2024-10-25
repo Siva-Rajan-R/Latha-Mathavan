@@ -383,8 +383,11 @@ def main(page:Page):
                                         ),
                                         width=500,
                                         height=300,
-                                        blur=Blur(50,50),
+                                        shadow=BoxShadow(0,5,'grey',blur_style=ShadowBlurStyle.OUTER),
                                         border_radius=50,
+                                        margin=margin.all(10),
+                                        bgcolor=colors.WHITE70,
+                                        border=border.all(1,'cyan')
                                     ),
                                     
                                 ],
@@ -395,7 +398,6 @@ def main(page:Page):
                         alignment=MainAxisAlignment.CENTER
                     ),
                     expand=True,
-                    gradient=LinearGradient(['red',colors.CYAN]),
                     width=page.width,
                     border_radius=20
                 ),
